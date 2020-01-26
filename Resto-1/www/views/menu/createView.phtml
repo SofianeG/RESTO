@@ -1,0 +1,48 @@
+
+
+<h1> Ajouter un menu</h1>
+<form method="post" action="<?= Router::getInstance()-> generateUrl("resto_menu_create")?>" autocomplete="off" enctype="multipart/form-data" data-validate>
+    <fieldset>
+        <div class="row">
+
+            <div class="col-3">
+                <legend>Titre</legend>
+                <input type="text" size="20" maxlength="60" name="title" data-minLength="3"/><br/>
+
+                <legend>Description</legend>
+                <textarea rows="10" cols="40" wrap="physique" name="description" placeholder="Description" data-minLength="250"></textarea><br/>
+                <p>
+                    <label for="price">Prix</label>
+                    <input type="text" name="price" id="price" data-type="float" data-optional="1"> €
+                </p>
+
+
+                <div class="button-add">
+                    <input type="file" name="image" value="ajouter une image" />
+                </div>
+
+            </div>
+            <div class="col-1"></div>
+            <div class="col-3" data-minchecked="2">
+                <?php foreach ($allDishes as $dish): ?>
+                    <select name="<?= $dish['id'] ?>-quantity" >
+                        <?php for($i = 1; $i <= 5; $i++): ?>
+                            <option value="<?= $i ?>">
+                                <?= $i ?>
+                            </option>
+                        <?php endfor; ?>
+                    </select>
+
+                    <input id="dish-<?= $dish['id'] ?>" type="checkbox" name="dish-ids[]" value="<?= $dish['id'] ?>">
+                    <label for="dish-<?= $dish['id'] ?>" ><?= $dish['title'] ?></label>
+                    <br>
+                <?php endforeach;?>
+            </div>
+        </div>
+
+
+        <div class="button-save">
+            <input type="submit" value="enregistrer" />
+        </div>
+
+</form>

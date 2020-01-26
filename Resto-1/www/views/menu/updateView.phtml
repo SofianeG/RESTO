@@ -1,0 +1,59 @@
+
+<h1>Modifier le menu <?= $menu['title'] ?></h1>
+
+
+
+    <form class="Edite-menu" method="post" action="<?=Router::getInstance()->generateUrl("resto_menu_update")?>" enctype="multipart/form-data" data-validate>
+        <h2>Title</h2>
+        <input type="text" size="60" maxlength="80" name="title" value="<?= htmlspecialchars($menu['title']) ?>"  data-minlength="3" data-required><br/>
+
+        <section class="row">
+            <article class="col-4">
+                <h2>Liste des plats</h2>
+                <?php foreach($allDishes as $dish): ?>
+                    <select name="<?= $dish["id"]?>-quantity" >
+                        <?php for($i=1; $i<=5; $i++): ?>
+                            <option value="<?= $i ?>" <?php if($dish['quantity'] == $i): ?> selected <?php endif?>>
+                                <?= $i ?>
+                            </option>
+                        <?php endfor; ?>
+                    </select>
+                    <input id="cat-<?= $dish["id"]?>" type="checkbox" value="<?= $dish["id"]?>" name="dish-ids[]"  <?php if($dish['isChecked']): ?> checked <?php endif?>>
+                    <label for="cat-<?= $dish["id"]?>" >
+                        <?= htmlspecialchars($dish["title"])?>
+                    </label>
+                    <br>
+                <?php endforeach;?>
+            </article>
+            <article class="col-4">
+                    <h2>Description</h2>
+                    <textarea rows="10" cols="60" wrap="physique" name="description" placeholder="Description"  data-minlength="255" data-required><?= htmlspecialchars($menu['description'] )?></textarea><br/>
+                    <p>
+                        <label for="price">forcePrice</label>
+                        <input type="text" name="price" id="price" value="<?= $menu['forcedPrice'] ?>"   data-type="integer">
+                    </p>
+            </article>
+        </section>
+
+
+                <h2>Image de menu</h2>
+
+                <?php if($menu['image']): ?>
+                    <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/menu/<?= $menu['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $menu['title'] ?>" id="photo-presentation">
+                    <input name ="img-suppr-menu" type="checkbox"/>Voulez vous supprimer l'image?
+                <?php else: ?>
+                    <p class="warning">PAS D'IMAGE</p>
+                <?php endif; ?>
+                <input class="btn btn-primary" name="image" type="file" value="choisir une image" />
+
+
+
+            <input type="text" name="id" value="<?= $menu['id'] ?>" hidden="hidden">
+
+            <input  class="btn btn-primary" type="submit" value="mettre à jour" />
+        </section>
+    </form>
+<div class=" row justify-content-end">
+    <a class="btn btn-primary addButton link" href="<?= $router->generateUrl("resto_menu_showall")?>" role="button">retour aux menus</a>
+    <a class="btn btn-primary addButton link" href="<?= $router->generateUrl("resto_home_main")?>" role="button">retour</a>
+</div>

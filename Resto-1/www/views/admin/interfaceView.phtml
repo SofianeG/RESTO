@@ -1,0 +1,28 @@
+<h1>Panneau de controle</h1>
+
+
+
+<section class="row justify-content-between">
+    <article class="col-5 container">
+        <h2><?=$order['totalquantity'] ?> commandes</h2>
+
+        <h2><?=TemplatingTools::getInstance()->priceFormat($order['totalprice'])?> de commandes</h2>
+
+        <a class="btn btn-primary" href="<?=Router::getInstance()->generateUrl("resto_admin_showallorder") ?>" role="button">Voir détail des commandes</a>
+
+    </article>
+    <article class="col-5 container">
+        <h2><?=$booking['totalresa']?> réservation</h2>
+
+        <h2><?=$booking['totalseats']?> tables réservées</h2>
+
+        <a class="btn btn-primary" href="<?=Router::getInstance()->generateUrl("resto_admin_showallbooking") ?> " role="button">Voir détail des réservations</a>
+    </article>
+</section>
+<article>
+    <h2><?=$user['totaluser']?> utilisateurs enregistrés</h2>
+
+    <a class="btn btn-primary" href="<?=Router::getInstance()->generateUrl("resto_admin_showalluser") ?> " role="button">Voir liste des utilisateurs</a>
+</article>
+
+<small class="col align-self-end"><?=TemplatingTools::getInstance()->formatSqlDates(date("Y"))?></small>

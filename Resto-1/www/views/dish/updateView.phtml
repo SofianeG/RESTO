@@ -1,0 +1,57 @@
+<h1>Modifier un plat</h1>
+
+<form action="<?= Router::getInstance()->generateUrl("resto_dish_update") ?>" method="post" autocomplete="off"  enctype="multipart/form-data" data-validate>
+
+    <div class="form-group " >
+        <select class="form-control" id="category" name="category">
+            <option value="-1" >Choisissez une catégorie</option>
+            <option value="Entrée" <?php if($dish["category"] == "Entrée"): ?> selected <?php endif; ?>>Entrée</option>
+            <option value="Plat" <?php if($dish["category"] == "Plat"): ?> selected <?php endif; ?>>Plat</option>
+            <option value="Dessert" <?php if($dish["category"] == "Dessert"): ?> selected <?php endif; ?>>Dessert</option>
+            <option value="Accompagnement" <?php if($dish["category"] == "Accompagnement"): ?> selected <?php endif; ?>>Accompagnement</option>
+            <option value="Végan" <?php if($dish["category"] == "Végan"): ?> selected <?php endif; ?>>Végan</option>
+            <option value="Viande" <?php if($dish["category"] == "Viande"): ?> selected <?php endif; ?>>Viande</option>
+            <option value="Poisson" <?php if($dish["category"] == "Poisson"): ?> selected <?php endif; ?>>Poisson</option>
+            <option value="Other" <?php if($dish["category"] == "Autre"): ?> selected <?php endif; ?>>Autre</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <input type="text" class="form-control" id="dish" name="title"  placeholder="Plat" value="<?= htmlspecialchars($dish["title"]) ?>"  data-minlength="3">
+    </div>
+
+
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="image-input" value="Nouvelle image" name="image">
+        <label class="custom-file-label" for="image-input">Choisir image</label>
+        <?php if($dish["image"]): ?>
+            <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/dish/<?= $dish['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $dish['title'] ?>" id="photo-suggestion">
+            <label for="suppr-image">Supprimer l'image</label>
+            <input id="suppr-image" name="suppr-image" type="checkbox">
+        <?php else: ?>
+            <p class="warning">PAS D'IMAGE</p>
+        <?php endif; ?>
+    </div>
+
+    <div class="form-group">
+        <textarea id="description" class="form-control" name="description" rows="3" placeholder="Décrivez votre plat"  data-minlength="255"><?= htmlspecialchars($dish["description"]) ?></textarea>
+    </div>
+
+    <div class="form-group">
+        <input type="text" id="price" class="form-control" name="price" value="<?= $dish["price"]?>" placeholder="Indiquer le prix du plat" data-required  data-type="integer">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+    <div>
+        <input type="text" name="id" autocomplete="off" value="<?= $dish['id'] ?>" hidden="hidden" >
+    </div>
+
+
+</form>
+
+
+
+
+

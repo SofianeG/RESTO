@@ -1,0 +1,238 @@
+html {
+	font-size: 62.5%;
+	box-sizing: border-box;
+	outline: none;
+}
+
+body{
+	font-size: 1.6rem;
+	font-family: 'M PLUS 1p', sans-serif;
+}
+
+header, footer{
+	background-color: #1e3799;
+	justify-content: space-between;
+	padding: 1%;
+	color: #ecf0f1;
+}
+footer .fab{
+	font-size: 3rem;
+}
+footer article{
+	text-align: center;
+}
+#reseau{
+	display: flex;
+	justify-content: space-evenly;
+}
+/*FONT RESEAUX SOCIAUX*/
+#reseau a{
+	color: white;
+}
+.fa-twitter-square:hover{
+	color: white;
+	background-color: #3498db;
+	border-radius: 0.4rem;
+}
+.fa-facebook-square:hover{
+	color: #1e3799;
+	background-color: white ;
+	border-radius: 0.4rem;
+}
+.fa-instagram:hover{
+	color: white;
+	background: linear-gradient(217deg, rgba(155, 89, 182,1.0), rgba(234, 32, 39,1.0) 70.71%),
+	linear-gradient(127deg, rgba(0,0,0,.8), rgba(0,255,0,0) 70.71%),
+	linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+	border-radius: 0.4rem;
+}
+/*FIN FONT RESEAUX SOCIAUX*/
+ul{
+	list-style: none;
+}
+main{
+	margin-bottom: 2%;
+	margin-top: 2%;
+	min-height: 450px;
+}
+#logo{
+	display: flex;
+	flex-wrap: wrap;
+}
+#logo img{
+	width: 100%;
+}
+/*PORTAIL*/
+#portail a{
+	color: #ecf0f1;
+}
+/*.connection{*/
+/*	background-color: #16a085;*/
+/*	border: none;*/
+/*}*/
+
+#deconnection:hover{
+	background-color: #ecf0f1;
+	text-decoration: none;
+	color: #1e3799;
+	font-weight: bold;
+}
+/*FIN PORTAIL*/
+
+/*NAVBAR*/
+.navigation{
+	/*border-color: white;*/
+	color: #ecf0f1;
+}
+/*FIN NAVBAR*/
+/*TITRES*/
+h1{
+	text-align: center;
+	color: #1e3799;
+}
+h2{
+	color: #1e3799;
+}
+/*FIN TITRE*/
+/*CLASS DES BOUTONS ET HOVER*/
+.submit{
+	border: none;
+	float:right;
+}
+.btn-primary {
+	border: none;
+}
+
+.bouton{
+	margin: 2% 0;
+	padding: 1%;
+	text-decoration: none;
+	color: white;
+	border-radius: 1rem;
+}
+.link{
+	background-color: #f6b93b;
+	text-decoration: none;
+}
+.link:hover{
+	text-decoration: none;
+}
+
+.precision{
+	background-color: #1e3799;
+	padding: 5%;
+}
+
+.edit{
+	background-color: #16a085;
+	padding: 5% ;
+
+}
+
+.remove{
+	background-color: #c0392b;
+	padding: 5% ;
+}
+
+/*FIN DE CLASS BOUTON ET HOVER*/
+/*TABLEAUX*/
+/*table{
+	margin: 5% 0;
+}
+td{
+	margin: 1% 0;
+	border-bottom: 1px solid #1e3799;
+}*/
+.table th, .table td{
+	vertical-align: inherit;
+	/*text-align: center;*/
+	max-width: 320px;
+}
+
+
+/*tr{*/
+/*	max-width: 150px;*/
+/*}*/
+.show-all img
+{
+	max-width: 150px;
+}
+.dish-size{
+	font-size: 1.5rem;
+}
+/*FIN TABLEAU*/
+/*FLASHBAG*/
+.flash-message{
+	background-color: #c0392b;
+	color: #ecf0f1;
+	font-size: 2rem;
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 2s linear;
+}
+
+.warning
+{
+	color: red ;
+}
+/*FLASHBAG*/
+
+/*PAGE PLAT*/
+#photo-suggestion{
+
+	margin: 4% 0 0 1%;
+	width: 100%;
+}
+/*FIN PAGE PLAT*/
+/*PAGE MENU UPDATE*/
+#photo-presentation{
+	max-width: 40%;
+	margin:	  1%;
+}
+/*FINMENU UPDATE*/
+/*MAP*/
+iframe{
+	width: 90%;
+	height: 30%;
+	margin-top: 25%;
+}
+#map{
+	text-align: center;
+}
+/*MAP*/
+
+/*MESSAGE D'ERREUR FORMULAIRE MAL REMPLIT*/
+.form-error{
+	color: red;
+}
+/*FIN DE MESSAGE FORMULAIRE MAL REMPLIT*/
+
+.tiny-pic
+{
+	max-width: 89px;
+}
+
+/*COULEUR STATUS COMMANDE*/
+.basket{
+	color: #f39c12;
+	font-weight: bold;
+
+}
+.pending{
+	color: #1abc9c;
+	font-weight: bold;
+}
+/*FIN COULEUR STATUS COMMANDE*/
+/*BOUTON D'AJOUT*/
+.add-to-the-list{
+	margin: 4% 0;
+}
+/*FIN BOUTON D'AJOUT*/
+/*PAGE BOOKING*/
+.date-reservation{
+	margin: 2%;
+}
+.reservation{
+	margin: 2% 0;
+}
+/*FIN PAGE BOOKING*/

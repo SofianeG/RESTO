@@ -1,0 +1,74 @@
+
+<h1>Tous nos menus</h1>
+
+<?php if(UserSession::getInstance()->isAdmin()):?>
+    <div class="add-to-the-list">
+        <a href="<?= $router->generateUrl("resto_menu_create") ?>" class="bouton link">Ajouter un menu</a>
+    </div>
+<?php endif; ?>
+
+<table class="table table-striped show-all">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Image</th>
+        <th scope="col">Plats</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($allMenus as $menu): ?>
+        <tr class="removable-container">
+
+            <th scope="row"><a class="btn btn-primary precision" href="<?= $router->generateUrl("resto_menu_show") ?>?id=<?=$menu["id"]?>" role="button"><?= htmlspecialchars($menu["title"]) ?></a></th>
+            <td><?= htmlspecialchars($menu["description"]) ?>...</td>
+            <td colspan="1">
+                <?php if($menu["forcedPrice"]): ?>
+                    <?= TemplatingTools::getInstance()->priceFormat($menu["forcedPrice"]) ?>
+                <?php else: ?>
+                    <?= TemplatingTools::getInstance()->priceFormat($allPrices[$menu["id"]]["price"])  ?>
+                <?php endif; ?>
+            </td>
+            <td>
+                <?php if($menu["image"]): ?>
+                    <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/menu/<?= $menu['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $menu['title'] ?>">
+                <?php else: ?>
+                    <img src="<?= Router::getInstance()->getWwwPath()?>/img/default_menu.jpeg" alt="<?= $menu['title'] ?>">
+                <?php endif ;?>
+            </td>
+            <td class="left-text">
+                <?php foreach($allDishes[$menu['id']] as $dish): ?>
+                    <p>
+                        <?= $dish['quantity'] ?> x
+                        <a href="<?= Router::getInstance()->generateUrl("resto_dish_show")?>?id=<?= $dish['id'] ?>" class="dish-size">
+                            <?= $dish['title'] ?>
+                        </a>
+                    </p>
+                <?php endforeach; ?>
+            </td>
+
+            <td>
+                <?php if ( UserSession::getInstance()->isAdmin()): ?>
+                    <a href="<?= $router->generateUrl("resto_menu_update")?>?id=<?=$menu["id"]?>" class="btn btn-primary precision edit">Editer</a>
+                    <a href="#" data-id="<?=$menu["id"]?>" data-url="<?= Router::getInstance()->generateUrl("resto_menu_remove")?>" class="btn btn-primary precision remove ajax-remove-button">Supprimer</a>
+                <?php elseif( UserSession::getInstance()->isAuthenticated()): ?>
+                    <a href="<?= $router->generateUrl("resto_order_addtobasket")?>?id=<?=$menu["id"]?>" class="bouton link">Ajouter à la commande</a>
+                <?php else : ?>
+                    <a href="<?= $router->generateUrl("resto_user_login")?>"  class="btn btn-primary">Se connecter pour commander</a>
+                <?php endif ?>
+            </td>
+
+
+
+        </tr>
+    <?php endforeach; ?>
+
+    </tbody>
+</table>
+
+<?php $neededScripts[] = "ajaxRemove.js"?>
+
+
+

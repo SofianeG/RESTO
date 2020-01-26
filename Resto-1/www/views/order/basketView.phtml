@@ -1,0 +1,68 @@
+
+<h1>Mon panier</h1>
+
+
+<?php if(count($allOrderDetails) == 0): ?>
+    <h2>Auncun article</h2>
+<?php  else: ?>
+    <a href="<?= Router::getInstance()->generateUrl("resto_order_emptybasket")?>" class="btn btn-primary">Vider mon panier</a>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Menu</th>
+            <th scope="col">Prix unitaire</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Sous-total</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tfoot class="thead-dark">
+        <tr>
+            <th scope="col">Montant total TTC</th>
+        </tr>
+        <tr>
+            <td>
+                <?= TemplatingTools::getInstance()->priceFormat($totalPrice)?>
+            </td>
+        </tr>
+        </tfoot>
+
+        <tbody>
+        <?php foreach($allOrderDetails as $orderDetail): ?>
+            <tr class="removable-container">
+                <th scope="row">
+                    <?php if($orderDetail["image"]): ?>
+                        <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/menu/<?= $orderDetail['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $orderDetail['title'] ?>" class="tiny-pic">
+                    <?php else: ?>
+                        <img src="<?= Router::getInstance()->getWwwPath()?>/img/default_menu.jpeg" alt="<?= $orderDetail['title'] ?>"  class="tiny-pic">
+                    <?php endif ;?>
+                    <?= $orderDetail["title"] ?>
+                </th>
+                <td><?=  $orderDetail["priceEach"]?></td>
+                <td>
+                    <select id="quantity-<?= $orderDetail['menu_id'] ?>" class="quantity-select form-control form-control" data-url="<?= Router::getInstance()->generateUrl("resto_order_show")?>" data-id="<?= $orderDetail['menu_id'] ?>">
+                        <?php for($i = 1; $i <= 50; $i++): ?>
+                            <option value="<?= $i ?>" <?php if($i == $orderDetail['quantity'] ): ?> selected <?php endif; ?>>
+                                <?= $i ?>
+                            </option>
+                        <?php endfor; ?>
+                    </select>
+                </td>
+                <td>
+                    <?= TemplatingTools::getInstance()->priceFormat($orderDetail["quantity"] * $orderDetail["priceEach"])?>
+                </td>
+                <td>
+                    <a href="#" data-id="<?=$orderDetail["menu_id"] ?>" data-url="<?=Router::getInstance()->generateUrl("resto_order_remove") ?>"  class="btn-default ajax-remove-button"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <a href="<?= Router::getInstance()->generateUrl("resto_order_validation")?>" class="btn btn-warning pending">Confirmer et passer ma commande</a>
+<?php endif; ?>
+
+
+

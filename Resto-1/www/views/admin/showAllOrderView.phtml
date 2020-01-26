@@ -1,0 +1,32 @@
+<h1>Commandes</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">N° de commande</th>
+        <th scope="col">N° client</th>
+        <th scope="col">Nom client</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Date de commande</th>
+        <th scope="col">Montant de la commande</th>
+        <th scope="col">Statue de la commande</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($allOrders as $order):?>
+        <tr>
+            <th scope="row"><?=$order['order_id']?></th>
+            <td><?=$order['user_id']?></td>
+            <td><?=$order['lastname']?> <?=$order['forname']?></td>
+            <td><?=$order['adress']?></td>
+            <td><?=$order['numTel']?></td>
+            <td><?=$order['orderDate']?></td>
+            <td><?=TemplatingTools::getInstance()->priceFormat($order['priceEach'])?></td>
+            <td class="<?=$order['status']?>"><?=$order['status']?></td>
+        </tr>
+    <?php endforeach;?>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="<?= Router::getInstance()->generateUrl("resto_admin_interface")?>" role="button">Retourner au panneau de controle</a>

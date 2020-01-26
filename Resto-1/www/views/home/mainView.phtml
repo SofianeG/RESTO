@@ -1,0 +1,17 @@
+
+<h1>Bon appétit</h1>
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <?php for($i =8; $i<27 ; $i++):?>
+            <div class="carousel-item active">
+                <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/dish/<?= $i ?>.jpg" class="d-block w-100" alt="illustration-plat">
+            </div>
+        <?php endfor;?>
+    </div>
+</div>
+
+<section id="map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10494.673626181733!2d2.2774766010425243!3d48.88359753562684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s16%20rue%20de%20la%20lib%C3%A9ration%2075017!5e0!3m2!1sfr!2sfr!4v1576246092899!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</section>

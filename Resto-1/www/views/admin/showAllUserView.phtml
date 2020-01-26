@@ -1,0 +1,29 @@
+<h1>Utilisateur</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Administrateur</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($allUser as $user):?>
+        <tr>
+            <th scope="row"><?=$user['lastname']?></th>
+            <td><?=$user['forname']?></td>
+            <td><?=$user['adress']?></td>
+            <td><?=$user['numTel']?></td>
+            <td><?=$user['email']?></td>
+            <td><?=$user['isAdmin']?></td>
+        </tr>
+    <?php endforeach;?>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="<?= Router::getInstance()->generateUrl("resto_admin_interface")?>" role="button">Retourner au panneau de controle</a>
+

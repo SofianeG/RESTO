@@ -1,0 +1,26 @@
+<h1>Réservation</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Service</th>
+        <th scope="col">Date de réservation</th>
+        <th scope="col">Nom client</th>
+        <th scope="col">Numéro de téléphone</th>
+        <th scope="col">Nombre de place réservées</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($allBooking as $booking):?>
+        <tr>
+            <th scope="row"><?=$booking['shift']?></th>
+            <td><?=$booking['bookingDate']?></td>
+            <td><?=$booking['lastname']?> <?=$booking['forname']?></td>
+            <td><?=$booking['numTel']?></td>
+            <td><?=$booking['seatCount']?></td>
+        </tr>
+    <?php endforeach;?>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="<?= Router::getInstance()->generateUrl("resto_admin_interface")?>" role="button">Retourner au panneau de controle</a>

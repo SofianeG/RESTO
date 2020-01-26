@@ -1,0 +1,33 @@
+
+
+<h1>Notre <?= htmlspecialchars($menu["title"])?></h1>
+
+<section class="row">
+    <acticle>
+
+        <?php if($menu["image"]): ?>
+            <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/menu/<?= $menu['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $menu['title'] ?>" id="photo-suggestion">
+        <?php else: ?>
+            <img src="<?= Router::getInstance()->getWwwPath()?>/img/default_menu.jpeg" alt="<?= $menu['title'] ?>" id="photo-suggestion">
+        <?php endif ;?>
+
+        <?php foreach ($allDishes as $dish): ?>
+            <p>
+                <?=htmlspecialchars($dish['quantity'])?> x
+                <a href="<?= Router::getInstance()->generateUrl("resto_dish_show") ?>?id=<?= $dish['id'] ?>">
+                    <?=htmlspecialchars($dish['title'])?>
+                </a>
+            </p>
+        <?php endforeach; ?>
+
+        <p><?= htmlspecialchars($menu["description"])?></p>
+
+        <p>
+            <strong>
+                Seulement <?= TemplatingTools::getInstance()->priceFormat($price) ?>
+            </strong>
+        </p>
+        <button class="bouton link submit">Ajouter à la commande</button>
+
+    </acticle>
+</section>

@@ -1,0 +1,33 @@
+
+
+<section class="row">
+    <form  class="col-5" action="<?= Router::getInstance()->generateUrl("resto_booking_create") ?>" method="post" enctype="multipart/form-data" data-validate>
+
+        <label for="seats">Nombre de places à réserver</label>
+        <select class="custom-select custom-select-lg reservation" name="seats" id="seats">
+            <option value="-1">Choisissez un nombre placee</option>
+            <?php for( $i=1; $i<= $maxSeats; $i++):?>
+                <option value="<?= $i ?>">
+                    <?= $i ?>
+                </option>
+            <?php endfor; ?>
+        </select>
+
+        <select  class="custom-select custom-select-lg reservation" name="shift" id="shift">
+            <option value="-1">Veuillez choisir le service</option>
+            <?php foreach($shifts as $shift ):?>
+                <option value="<?= $shift ?>">
+                    <?= $shift ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <label for="bookingDate">Date de réservation</label>
+        <div class="date-reservation ">
+                <?php TemplatingTools::getInstance()->renderDateSelects("now",[0,1]); ?>
+        </div>
+
+            <button type="submit" class="btn btn-primary link">Réserver</button>
+
+    </form>
+</section>

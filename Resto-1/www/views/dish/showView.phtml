@@ -1,0 +1,35 @@
+<h1>Notre <?= htmlspecialchars($dish["title"])?></h1>
+
+<section class="row">
+
+    <article class="col-6">
+        <p><?= $dish["description"]?></p>
+        <h2><?= $dish["category"]?></h2>
+    </article>
+
+    <article class="col-6">
+        <?php if($dish["image"]): ?>
+            <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/dish/<?= $dish['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $dish['title'] ?>" id="photo-suggestion">
+        <?php else: ?>
+            <img src="<?= Router::getInstance()->getWwwPath()?>/img/default_dish.jpeg" alt="<?= $dish['title'] ?>" id="photo-suggestion">
+        <?php endif ;?>
+    </article>
+
+        <p><?= number_format($dish["price"], 2, "&nbsp;€&nbsp;", " ")?></p>
+
+        <form action="">
+            <div class="form-group col-md-4">
+                <label for="quantity">Quantité</label>
+                <select id="quantity" class="form-control" name="quantity">
+                <?php for( $i=1; $i<= 6; $i++):?>
+                    <option value="<?= $i ?>">
+                        <?= $i ?>
+                    </option>
+                <?php endfor; ?>
+                </select>
+            </div>
+
+            <button type="submit" class="bouton link submit">Ajouter à la commande</button>
+        </form>
+
+</section>

@@ -1,0 +1,50 @@
+<h1>Tous nos plats</h1>
+
+<?php if(UserSession::getInstance()->isAdmin()):?>
+<div class="add-to-the-list">
+    <a href="<?= $router->generateUrl("resto_dish_create") ?>" class="bouton link">Ajouter un plat</a>
+</div>
+<?php endif; ?>
+
+
+<table class="table table-striped show-all">
+    <thead>
+    <tr>
+        <th scope="col" colspan="6">Nom</th>
+        <th scope="col" colspan="5">Description</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Categorie</th>
+        <th scope="col">Image</th>
+        <th scope="col"colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($allDishes as $dish): ?>
+            <tr class="removable-container">
+
+                <th scope="col" colspan="6"><a class="btn btn-primary precision" href="<?= $router->generateUrl("resto_dish_show") ?>?id=<?=$dish["id"]?>" role="button"><?= htmlspecialchars($dish["title"]) ?></a></th>
+                <td scope="row" colspan="5"><?= htmlspecialchars($dish["description"]) ?>...</td>
+                <td scope="row"><?= number_format($dish["price"], 2, "&nbsp;€&nbsp;", " ")?></td>
+                <td scope="row"><?= $dish["category"]?></td>
+                <td scope="row">
+                    <?php if($dish["image"]): ?>
+                        <img src="<?= Router::getInstance()->getWwwPath()?>/uploads/dish/<?= $dish['image'] ?>?b=<?= date("YmdHis") ?>" alt="<?= $dish['title'] ?>">
+                    <?php else: ?>
+                        <img src="<?= Router::getInstance()->getWwwPath()?>/img/default_dish.jpeg" alt="<?= $dish['title'] ?>">
+                    <?php endif ;?>
+                </td>
+
+                <td scope="row" colspan="2">
+                    <?php if ( UserSession::getInstance()->isAdmin()): ?>
+                        <a href="<?= $router->generateUrl("resto_dish_update")?>?id=<?=$dish["id"]?>" class="btn btn-primary precision edit">Editer</a>
+                        <a href="#" data-id="<?=$dish["id"]?>" data-url="<?= Router::getInstance()->generateUrl("resto_dish_remove")?>" class="btn btn-primary precision remove ajax-remove-button">Supprimer</a>
+                    <?php elseif( UserSession::getInstance()->isAuthenticated()): ?>
+                        <a href="<?= $router->generateUrl("resto_order_addtobasket")?>?id=<?=$dish["id"]?>" class="bouton link">Ajouter à la commande</a>
+                    <?php else : ?>
+                        <a href="<?= $router->generateUrl("resto_user_login")?>"  class="btn btn-primary">Se connecter pour commander</a>
+                    <?php endif ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
